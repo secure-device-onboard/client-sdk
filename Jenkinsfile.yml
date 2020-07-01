@@ -71,9 +71,9 @@ node('ccode'){
           mkdir -p sdo-test/binaries/client-sdk/x86_epid_sct_bin
         '''
         print "copying the dependent binaries from pri, supply-chain-tools and rendezvous-service"
-        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'PRI_dmareddx/master', selector: lastSuccessful(), target: 'sdo-test/binaries/pri/'
-        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'SCT_dmareddx/master', selector: lastSuccessful(), target: 'sdo-test/binaries/supply-chain-tools/'
-        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'rendezvous-service_dmareddx/master', selector: lastSuccessful(), target: 'sdo-test/binaries/rendezvous-service'
+        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'pri/master', selector: lastSuccessful(), target: 'sdo-test/binaries/pri/'
+        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'supply-chain-tools/master', selector: lastSuccessful(), target: 'sdo-test/binaries/supply-chain-tools/'
+        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'rendezvous-service/master', selector: lastSuccessful(), target: 'sdo-test/binaries/rendezvous-service'
         print "Extract the dependent binaries to respective folders"
         sh '''
           tar -xvzf sdo-test/binaries/pri/demo.tar.gz -C sdo-test/binaries/pri/ --strip=1
