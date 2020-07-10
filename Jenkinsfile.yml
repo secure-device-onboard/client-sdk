@@ -58,7 +58,7 @@ node('ccode'){
       print "Archive the artifacts"
       archiveArtifacts artifacts: 'client-sdk/tpm_*.tar.gz', fingerprint: true, allowEmptyArchive: false
     }
-   try{
+try{
       stage('Run SmokeTest'){
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'sdo-test']], userRemoteConfigs: [[credentialsId: 'sdo-automationgithubtoken', url: 'https://github.com/secure-device-onboard-ci/sdo-test']]])
         sh '''
@@ -70,9 +70,9 @@ node('ccode'){
           mkdir -p sdo-test/binaries/client-sdk/x86_epid_sct_bin
         '''
         print "copying the dependent binaries from pri, supply-chain-tools and rendezvous-service"
-        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'PRI_dmareddx/master', selector: lastSuccessful(), target: 'sdo-test/binaries/pri/'
-        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'SCT_dmareddx/master', selector: lastSuccessful(), target: 'sdo-test/binaries/supply-chain-tools/'
-        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'rendezvous-service_dmareddx/master', selector: lastSuccessful(), target: 'sdo-test/binaries/rendezvous-service'
+        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'pri/master', selector: lastSuccessful(), target: 'sdo-test/binaries/pri/'
+        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'supply-chain-tools/master', selector: lastSuccessful(), target: 'sdo-test/binaries/supply-chain-tools/'
+        copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'rendezvous-service/master', selector: lastSuccessful(), target: 'sdo-test/binaries/rendezvous-service'
         print "Extract the dependent binaries to respective folders"
         sh '''
           tar -xvzf sdo-test/binaries/pri/demo.tar.gz -C sdo-test/binaries/pri/ --strip=1
@@ -99,7 +99,7 @@ node('ccode'){
         print "Client-SDK Device smoke Tests with PRI-RV, SCT-Manufacturer"
         sh '''
           cd sdo-test
-          mvn clean test -Dgroups=SctCdeviceTest,CdeviceTests
+          mvn clean test -Dgroups=CdeviceTests
         '''
         print "Client-SDKDevice smoke Tests with Onprem-RV, SCT-Manufacturer"
         sh '''
