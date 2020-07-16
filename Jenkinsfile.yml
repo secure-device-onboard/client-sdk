@@ -67,7 +67,6 @@ try{
           mkdir -p sdo-test/binaries/rendezvous-service
           mkdir -p sdo-test/binaries/client-sdk/x86_ecdsa256_sct_bin
           mkdir -p sdo-test/binaries/client-sdk/x86_ecdsa384_sct_bin
-          mkdir -p sdo-test/binaries/client-sdk/x86_epid_sct_bin
         '''
         print "copying the dependent binaries from pri, supply-chain-tools and rendezvous-service"
         copyArtifacts filter: 'demo.tar.gz', fingerprintArtifacts: true, projectName: 'pri/master', selector: lastSuccessful(), target: 'sdo-test/binaries/pri/'
@@ -85,8 +84,6 @@ try{
           cp sdo-test/testFiles/keys/ecdsa256privkey.dat sdo-test/binaries/client-sdk/x86_ecdsa256_sct_bin/data/
           tar -xvzf client-sdk/x86_ecdsa384_c_sct_bin.tar.gz -C sdo-test/binaries/client-sdk/x86_ecdsa384_sct_bin/ --strip=1
           cp sdo-test/testFiles/keys/ecdsa384privkey.dat sdo-test/binaries/client-sdk/x86_ecdsa384_sct_bin/data/
-          tar -xvzf client-sdk/x86_epid_c_sct_bin.tar.gz -C sdo-test/binaries/client-sdk/x86_epid_sct_bin/ --strip=1
-          cp sdo-test/testFiles/keys/epidprivkey.dat sdo-test/binaries/client-sdk/x86_epid_sct_bin/data/ 
           cp -r sdo-test/binaries/client-sdk sdo-test
         '''
         print "Create tomcat containers running manufacturer & db"
