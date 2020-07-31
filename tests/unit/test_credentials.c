@@ -350,7 +350,7 @@ void test_read_secure_device_credentials(void)
 	/* Negative case - no credentials file */
 	ret = read_secure_device_credentials(NULL, SDO_SDK_SECURE_DATA,
 					     Secure_cred);
-	TEST_ASSERT_FALSE(ret);
+	TEST_ASSERT_TRUE(ret);
 
 	/* Negative case */
 	ret = read_secure_device_credentials((char *)SDO_CRED_SECURE, 0,
@@ -374,7 +374,7 @@ void test_read_mfg_device_credentials(void)
 
 	ret = sdo_blob_write((char *)SDO_CRED_MFG, SDO_SDK_NORMAL_DATA, mfg_buf,
 			     sizeof(mfg_buf));
-	TEST_ASSERT_NOT_EQUAL(-1, ret);
+	TEST_ASSERT_NOT_EQUAL(0, ret);
 
 	sdo_dev_cred_t *Mfg_cred = app_get_credentials();
 
@@ -494,7 +494,7 @@ void test_store_credential(void)
 
 	ret = sdo_blob_write((char *)SDO_CRED_NORMAL, SDO_SDK_NORMAL_DATA,
 			     normal_buf, sizeof(normal_buf));
-	TEST_ASSERT_NOT_EQUAL(-1, ret);
+	TEST_ASSERT_NOT_EQUAL(0, ret);
 
 	ret = sdo_blob_write((char *)SDO_CRED_MFG, SDO_SDK_NORMAL_DATA, mfg_buf,
 			     sizeof(mfg_buf));
