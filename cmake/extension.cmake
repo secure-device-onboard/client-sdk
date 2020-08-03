@@ -167,6 +167,15 @@ elseif(DA MATCHES epid)
   message(WARNING "EPID support is no longer available")
 endif()
 
+if(DA STREQUAL tpm20_ecdsa256)
+  if(${TPM2_TCTI_TYPE} MATCHES tpmrm0)
+    client_sdk_compile_definitions(-DTPM2_TCTI_TYPE=\"device:/dev/tpmrm0\")
+  elseif(${TPM2_TCTI_TYPE} MATCHES tabrmd)
+    client_sdk_compile_definitions(-DTPM2_TCTI_TYPE=\"tabrmd\")
+  else()
+    message(WARNING "Supported TPM2_TCTI_TYPE values are 'tabrmd' and 'tpmrm0'")
+  endif()
+endif()
 
 if(TLS MATCHES openssl)
   client_sdk_compile_definitions(
@@ -253,6 +262,17 @@ endif()
 
 if(${HTTPPROXY} STREQUAL true)
   client_sdk_compile_definitions(-DHTTPPROXY)
+  if(${PROXY_DISCOVERY} STREQUAL true)
+    client_sdk_compile_definitions(-DPROXY_DISCOVERY)
+  endif()
+endif()
+
+if(${RESALE} STREQUAL true)
+  client_sdk_compile_definitions(-DRESALE_SUPPORTED)
+endif()
+
+if(${REUSE} STREQUAL true)
+  client_sdk_compile_definitions(-DREUSE_SUPPORTED)
 endif()
 
 ############################################################
