@@ -1725,9 +1725,11 @@ TEST_CASE("crypto_support_sdo_set_kex_paramA_crypto_hal_set_peer_random_fail",
 #if defined(KEX_DH_ENABLED)
 	if (NULL == adh_bytes) {
 		adh_bytes = sdo_alloc(DH_PEER_RANDOM_SIZE);
-		goto error;
-		if (0 !=
-		    sdo_crypto_random_bytes(adh_bytes, DH_PEER_RANDOM_SIZE)) {
+		if (adh_bytes == NULL) {
+			goto error;
+		}
+		if (sdo_crypto_random_bytes(adh_bytes, DH_PEER_RANDOM_SIZE) !=
+		    0) {
 			goto error;
 		}
 	}
@@ -1878,7 +1880,8 @@ TEST_CASE("sdo_ov_verify", "[crypto_support][sdo]")
 	uint32_t signature_len = BUFF_SIZE_256_BYTES;
 	uint8_t *message_signature = malloc(signature_len);
 	TEST_ASSERT_NOT_NULL(message_signature);
-	bool *result = malloc(sizeof(bool *));
+	bool val = 1;
+	bool *result = &val;
 	TEST_ASSERT_NOT_NULL(result);
 
 	// Sign using RSApk
@@ -2009,7 +2012,6 @@ TEST_CASE("sdo_ov_verify", "[crypto_support][sdo]")
 		message_signature = NULL;
 	}
 	if (result) {
-		free(result);
 		result = NULL;
 	}
 	ret = sdo_kex_close();
@@ -2032,7 +2034,8 @@ TEST_CASE("sdo_ov_verify_invalid_message", "[crypto_support][sdo]")
 	uint32_t signature_len = BUFF_SIZE_256_BYTES;
 	uint8_t *message_signature = malloc(signature_len);
 	TEST_ASSERT_NOT_NULL(message_signature);
-	bool *result = malloc(sizeof(bool *));
+	bool val = 1;
+	bool *result = &val;
 	TEST_ASSERT_NOT_NULL(result);
 
 	// Sign using RSApk
@@ -2156,7 +2159,6 @@ TEST_CASE("sdo_ov_verify_invalid_message", "[crypto_support][sdo]")
 		message_signature = NULL;
 	}
 	if (result) {
-		free(result);
 		result = NULL;
 	}
 }
@@ -2177,7 +2179,8 @@ TEST_CASE("sdo_ov_verify_invalid_message_length", "[crypto_support][sdo]")
 	uint32_t signature_len = BUFF_SIZE_256_BYTES;
 	uint8_t *message_signature = malloc(signature_len);
 	TEST_ASSERT_NOT_NULL(message_signature);
-	bool *result = malloc(sizeof(bool *));
+	bool val = 1;
+	bool *result = &val;
 	TEST_ASSERT_NOT_NULL(result);
 
 	// Sign using RSApk
@@ -2301,7 +2304,6 @@ TEST_CASE("sdo_ov_verify_invalid_message_length", "[crypto_support][sdo]")
 		message_signature = NULL;
 	}
 	if (result) {
-		free(result);
 		result = NULL;
 	}
 }
@@ -2322,7 +2324,8 @@ TEST_CASE("sdo_ov_verify_invalid_message_signature", "[crypto_support][sdo]")
 	uint32_t signature_len = BUFF_SIZE_256_BYTES;
 	uint8_t *message_signature = malloc(signature_len);
 	TEST_ASSERT_NOT_NULL(message_signature);
-	bool *result = malloc(sizeof(bool *));
+	bool val = 1;
+	bool *result = &val;
 	TEST_ASSERT_NOT_NULL(result);
 
 	// Sign using RSApk
@@ -2446,7 +2449,6 @@ TEST_CASE("sdo_ov_verify_invalid_message_signature", "[crypto_support][sdo]")
 		message_signature = NULL;
 	}
 	if (result) {
-		free(result);
 		result = NULL;
 	}
 }
@@ -2467,7 +2469,8 @@ TEST_CASE("sdo_ov_verify_invalid_signature_len", "[crypto_support][sdo]")
 	uint32_t signature_len = BUFF_SIZE_256_BYTES;
 	uint8_t *message_signature = malloc(signature_len);
 	TEST_ASSERT_NOT_NULL(message_signature);
-	bool *result = malloc(sizeof(bool *));
+	bool val = 1;
+	bool *result = &val;
 	TEST_ASSERT_NOT_NULL(result);
 
 	// Sign using RSApk
@@ -2591,7 +2594,6 @@ TEST_CASE("sdo_ov_verify_invalid_signature_len", "[crypto_support][sdo]")
 		message_signature = NULL;
 	}
 	if (result) {
-		free(result);
 		result = NULL;
 	}
 }
@@ -2612,7 +2614,8 @@ TEST_CASE("sdo_ov_verify_invalid_pubkey", "[crypto_support][sdo]")
 	uint32_t signature_len = BUFF_SIZE_256_BYTES;
 	uint8_t *message_signature = malloc(signature_len);
 	TEST_ASSERT_NOT_NULL(message_signature);
-	bool *result = malloc(sizeof(bool *));
+	bool val = 1;
+	bool *result = &val;
 	TEST_ASSERT_NOT_NULL(result);
 
 	// Sign using RSApk
@@ -2716,8 +2719,9 @@ TEST_CASE("sdo_ov_verify_invalid_pubkey", "[crypto_support][sdo]")
 	if (validkey)
 		RSA_free(validkey);
 #else
-	if (pubkey)
+	if (pubkey != NULL) {
 		sdo_public_key_free(pubkey);
+	}
 	if (validkey)
 		EC_KEY_free(validkey);
 #endif
@@ -2736,7 +2740,6 @@ TEST_CASE("sdo_ov_verify_invalid_pubkey", "[crypto_support][sdo]")
 		message_signature = NULL;
 	}
 	if (result) {
-		free(result);
 		result = NULL;
 	}
 }
@@ -3453,7 +3456,8 @@ TEST_CASE("crypto_hal_sig_verify_fail_case", "[crypto_support][sdo]")
 	uint32_t signature_len = BUFF_SIZE_256_BYTES;
 	uint8_t *message_signature = malloc(signature_len);
 	TEST_ASSERT_NOT_NULL(message_signature);
-	bool *result = malloc(sizeof(bool *));
+	bool val = 1;
+	bool *result = &val;
 	TEST_ASSERT_NOT_NULL(result);
 
 	// Sign using RSApk
@@ -3578,7 +3582,6 @@ TEST_CASE("crypto_hal_sig_verify_fail_case", "[crypto_support][sdo]")
 		message_signature = NULL;
 	}
 	if (result) {
-		free(result);
 		result = NULL;
 	}
 	crypto_hal_sig_verify_fail_flag = false;
