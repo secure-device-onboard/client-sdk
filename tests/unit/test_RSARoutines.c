@@ -20,7 +20,7 @@ void test_rsasigverification(void);
 void showPK(sdo_public_key_t *pk);
 RSA *generateRSA_key(void);
 int sha256_sign(unsigned char *msg, unsigned int mlen, unsigned char *out,
-                unsigned int *outlen, RSA *r);
+		unsigned int *outlen, RSA *r);
 sdo_public_key_t *getSDOpk(RSA *r);
 
 /*** Unity functions. ***/
@@ -129,7 +129,7 @@ sdo_public_key_t *getSDOpk(RSA *r)
 	const BIGNUM *d = NULL;
 	const BIGNUM *e = NULL;
 	int sizeofpkmodulus = 0;
-	unsigned char *pkmodulusbuffer = malloc(sizeofpkmodulus);
+	unsigned char *pkmodulusbuffer = NULL;
 
 	RSA_get0_key(r, &n, &e, &d);
 	if (!n || !e)
@@ -362,7 +362,7 @@ TEST_CASE("rsaencrypt", "[RSARoutines][sdo]")
 #ifdef HEXDEBUG
 	hexdump("CYPHERTEXT", cipher_text, cipher_length);
 #endif
-	if (cipher_text) {
+	if (cipher_text != NULL) {
 		free(cipher_text);
 		cipher_text = NULL;
 	}
@@ -415,8 +415,9 @@ TEST_CASE("rsaencrypt", "[RSARoutines][sdo]")
 	TEST_ASSERT_EQUAL_MESSAGE(-1, ret, "RSA Encryption Failed");
 
 	/* clean up */
-	if (cipher_text)
+	if (cipher_text != NULL) {
 		free(cipher_text);
+	}
 	sdo_byte_array_free(testdata);
 	sdo_public_key_free(pk);
 #ifdef USE_OPENSSL
@@ -504,7 +505,7 @@ TEST_CASE("rsasigverification", "[RSARoutines][sdo]")
 			/* force a failure by using a modified/different message
 			 */
 			crypto_hal_random_bytes(testdata->bytes,
-						 BUFF_SIZE_8_BYTES);
+						BUFF_SIZE_8_BYTES);
 #ifdef HEXDEBUG
 			hexdump("MODIFIED CLEARTEXT", testdata->bytes,
 				testdata->byte_sz);
