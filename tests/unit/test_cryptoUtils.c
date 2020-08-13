@@ -28,13 +28,14 @@ void set_up(void);
 void tear_down(void);
 int __wrap_malloc(size_t size);
 errno_t __wrap_memset_s(void *dest, rsize_t len, uint8_t value);
-errno_t __wrap_memcpy_s(void *dest, rsize_t dmax, const void *src, rsize_t smax);
+errno_t __wrap_memcpy_s(void *dest, rsize_t dmax, const void *src,
+			rsize_t smax);
 sdo_hash_t *__wrap_sdo_hash_alloc(int hash_type, int size);
 void __wrap_sdo_hash_free(sdo_hash_t *hp);
 int __wrap_crypto_hal_hmac(uint8_t hmac_type, uint8_t *buffer,
-                           size_t buffer_length, uint8_t *output,
-                           size_t output_length, uint8_t *key,
-                           size_t key_length);
+			   size_t buffer_length, uint8_t *output,
+			   size_t output_length, uint8_t *key,
+			   size_t key_length);
 void test_aes_encrypt_packet(void);
 void test_aes_decrypt_packet(void);
 
@@ -291,8 +292,9 @@ void test_aes_encrypt_packet(void)
 	hash_alloc_fail_case = false;
 	hash_free_fail_case = false;
 
-	if (last_pkt->hmac)
+	if (last_pkt->hmac != NULL) {
 		sdo_hash_free(last_pkt->hmac);
+	}
 	ret = sdo_kex_close();
 	TEST_ASSERT_EQUAL_INT(0, ret);
 
