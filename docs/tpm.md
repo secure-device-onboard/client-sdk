@@ -1,14 +1,14 @@
 # Linux* TPM* Implementation
 
-`Ubuntu* OS version 16.04/18.04` on x86 was used as a development and execution OS. Follow these steps to compile and execute  Secure Device Onboard (SDO).
+`Ubuntu* OS version 18.04` on x86 was used as a development and execution OS. Follow these steps to compile and execute  Secure Device Onboard (SDO).
 
 The  SDO build and execution depend on OpenSSL* toolkit version 1.1.1f. Users must install or upgrade the toolkit before compilation if the toolkit is not available by default in the environment.
 
-## 1. Packages requirements when setting up TPM2.0 (on Ubuntu OS version 16.04/18.04):
+## 1. Packages requirements when setting up TPM2.0 (on Ubuntu OS version 18.04):
 
 OpenSSL* toolkit version 1.1.1f. Follow the steps given in Section 10 to update the openssl version to 1.1.1f.
 
-## 2. TPM* Library Installation (for Ubuntu OS version 16.04/18.04):
+## 2. TPM* Library Installation (for Ubuntu OS version 18.04):
 
  SDO TPM based client-sdk uses TPM-TSS 2.3.1, TPM2-ABRMD 2.2.0 and TPM2-TOOLS 4.0.1 libraries for key and cryptography related operations. The TPM-TSS library is required for compiling the code while all 3 libraries are required for running the code. Create an empty directory, download and execute SDO TPM [TPM-Library-Installation-Script](../utils/install_tpm_libs.sh) which can be used for both installation and uninstallation of TPM libraries. Alternatively, perform steps listed in section 2.1 to setup TPM library without using the TPM [TPM-Library-Installation-Script](../utils/install_tpm_libs.sh).
 
