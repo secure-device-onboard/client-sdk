@@ -1,7 +1,7 @@
 # Secure Device Onboard (SDO) Compilation Setup
 <a name="safestring"></a>
 ## 1. Intel safestringlib
-SDO client-sdk uses safestringlib for string and memory operations to prevent serious security vulnerabilities (e.g. buffer overflows).
+SDO client-sdk uses safestringlib for string and memory operations to prevent serious security vulnerabilities (For example, buffer overflows).
 
 1. For Linux*/ Arm Mbed* OS/ Arm Mbed Linux OS builds, download safestring from <a href="https://github.com/intel/safestringlib">intel-safestringlib</a>.
 
