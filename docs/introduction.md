@@ -15,14 +15,14 @@ The SDK is to be linked with a customer application that initiates and drives th
 The sdo-client-sdk is organized according to the following directory structure:
 
 	├── app               : SDO application
-	├── cmake             : Cmake files
+	├── cmake*             : Cmake files
 	├── crypto            : Underlying cryptography and SSL/TLS 
 	├── data              : Data files, e.g. device credentials
 	├── device_modules    : service module implementation
 	├── docs              : Documentation
 	├── include           : Top level public headers
 	├── lib               : SDO Device Library
-	├── mbedos            : Arm Mbed OS-specific build
+	├── mbedos*            : Arm Mbed OS-specific build
 	├── network           : OS-specific network abstraction
 	├── storage           : OS-specific storage abstraction
 	├── tests             : Unit tests
