@@ -17,7 +17,7 @@ The sdo-client-sdk is organized according to the following directory structure:
 	├── app               : SDO application
 	├── cmake*            : Cmake files
 	├── crypto            : Underlying cryptography and SSL/TLS 
-	├── data              : Data files, e.g. device credentials
+	├── data              : Data files, For example, device credentials
 	├── device_modules    : service module implementation
 	├── docs              : Documentation
 	├── include           : Top level public headers
