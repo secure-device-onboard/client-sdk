@@ -28,6 +28,7 @@
 #define STORAGE_NAMESPACE "storage"
 #define OWNERSHIP_TRANSFER_FILE "data/owner_transfer"
 #define ERROR_RETRY_COUNT 5
+extern int tinycbor_main(void);
 
 static bool is_ownership_transfer(bool do_resale)
 {
@@ -255,6 +256,11 @@ int app_main(bool is_resale)
 		return -1;
 	}
 #endif /* SECURE_ELEMENT */
+
+	/* tiny cbor test code to be removed in production*/
+#if 0
+	tinycbor_main();
+#endif
 
 	if (-1 == configure_normal_blob()) {
 		LOG(LOG_ERROR,
