@@ -80,17 +80,17 @@ The library can be downloaded from [tpm2-tools-4.0.1-download](https://github.co
 
 The build and installation process can be found at [tpm2-tools-4.0.1-install](https://github.com/tpm2-software/tpm2-tools/blob/4.0.X/INSTALL.md)
 
-#### 2.1.4 tpm2-tss-engine
+#### 2.1.4 tpm2-tss-engine-1.1.0
 
-This library provides the OpenSSL engine, which performs the OpenSSL cryptography operation using the keys inside the TPM.  uses a specific commit version from the master branch of this library because currently, there is no release version of this library with the fix for the following issue:[github-issue-124](https://github.com/tpm2-software/tpm2-tss-engine/issues/124).
+This library provides the OpenSSL engine, which performs the OpenSSL cryptography operation using the keys inside the TPM. It uses release version 1.1.0 of the library.
 
 ##### Source code
 
-The library can be downloaded from [tpm2-tss-engine-download](https://github.com/tpm2-software/tpm2-tss-engine/archive/820835977213ee28c0866f8eff623c307c618f5d.zip)
+The library can be downloaded from [tpm2-tss-engine-download](https://github.com/tpm2-software/tpm2-tss-engine/archive/v1.1.0.zip)
 
 ##### Build and Install Process
 
-The build and installation process can be found at [tpm2-tss-engine-install](https://github.com/tpm2-software/tpm2-tss-engine/blob/820835977213ee28c0866f8eff623c307c618f5d/INSTALL.md)
+The build and installation process can be found at [tpm2-tss-engine-install](https://github.com/tpm2-software/tpm2-tss-engine/blob/v1.1.0/INSTALL.md)
 
 ## 3. Compiling Intel safestringlib
 
