@@ -232,12 +232,14 @@ bool setup_http_proxy(const char *filename, sdo_ip_address_t *sdoip,
 
 	nread = sdo_blob_size((char *)filename, SDO_SDK_RAW_DATA);
 	if (nread > 0) {
-		proxydata = sdo_alloc(nread);
+		// Allocate 1 more byte for NULL character at the end.
+		proxydata = sdo_alloc(nread + 1);
 		if (sdo_blob_read((char *)filename, SDO_SDK_RAW_DATA, proxydata,
 				  nread) == -1) {
 			LOG(LOG_ERROR, "Could not read %s file\n", filename);
 			return false;
 		}
+		proxydata[nread] = '\0';
 	} else {
 		LOG(LOG_INFO, "'%s' with proxy info absent\n", filename);
 		return false;
