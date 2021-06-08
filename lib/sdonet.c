@@ -234,21 +234,26 @@ bool setup_http_proxy(const char *filename, sdo_ip_address_t *sdoip,
 	if (nread > 0) {
 		// Allocate 1 more byte for NULL character at the end.
 		proxydata = sdo_alloc(nread + 1);
+		if (!proxydata) {
+			LOG(LOG_ERROR, "Could not allocate memory to read proxy information.\n");
+			goto err;
+		}
+
 		if (sdo_blob_read((char *)filename, SDO_SDK_RAW_DATA, proxydata,
 				  nread) == -1) {
 			LOG(LOG_ERROR, "Could not read %s file\n", filename);
-			return false;
+			goto err;
 		}
 		proxydata[nread] = '\0';
 	} else {
 		LOG(LOG_INFO, "'%s' with proxy info absent\n", filename);
-		return false;
+		goto err;
 	}
 
 	if (!nread) {
 		LOG(LOG_DEBUG,
 		    "HTTP Proxy enabled but properties file missing !!\n");
-		return false;
+		goto err;
 	}
 
 	if (get_netip_port((const char *)proxydata, nread, proxy,
