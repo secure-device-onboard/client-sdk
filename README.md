@@ -1,5 +1,7 @@
 # Secure Device Onboard (SDO) Client SDK
 
+***Note:***  The support for this product will be discontinued from Dec 1, 2022. We recommend users to switch to FDO components (https://github.com/secure-device-onboard/client-sdk-fidoiot).
+
 [ Introduction ](docs/introduction.md) <br>
 [  SDO Compilation Setup ](docs/setup.md)
 - [ Safestring ](docs/setup.md#safestring) <br>
