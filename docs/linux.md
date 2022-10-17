@@ -1,7 +1,7 @@
 # Linux* OS
 The development and execution OS used was `Ubuntu* OS version 20.04` on x86.. Follow these steps to compile and execute Secure Device Onboard (SDO).
 
-The SDO build and execution depend on OpenSSL* toolkit version 1.1.1n. Users must install or upgrade the toolkit before compilation if the toolkit is not available by default in the environment.
+The SDO build and execution depend on OpenSSL* toolkit version 1.1.1q. Users must install or upgrade the toolkit before compilation if the toolkit is not available by default in the environment.
 
 ## 1. Packages Requirements when Building Binaries (for Ubuntu OS version 20.04):
 
@@ -11,7 +11,7 @@ $ sudo apt-get install python-setuptools clang-format dos2unix ruby \
 ```
 ## 2. Packages Requirements when Executing Binaries (on Ubuntu OS version 20.04):
 
-OpenSSL* toolkit version 1.1.1n
+OpenSSL* toolkit version 1.1.1q
 GCC version > 7.5
 
 ## 3. Compiling Intel safestringlib
@@ -81,11 +81,11 @@ To run the device against the SCT for the DI protocol, do the following:
   ```
 
 
-**Steps to Upgrade the OpenSSL Toolkit to Version 1.1.1n**
+**Steps to Upgrade the OpenSSL Toolkit to Version 1.1.1q**
 
-1. Pull the tarball: wget https://www.openssl.org/source/openssl-1.1.1n.tar.gz
+1. Pull the tarball: wget https://www.openssl.org/source/openssl-1.1.1q.tar.gz
 
-2. Unpack the tarball with `tar -zxf openssl-1.1.1n.tar.gz && cd openssl-1.1.1n`
+2. Unpack the tarball with `tar -zxf openssl-1.1.1q.tar.gz && cd openssl-1.1.1q`
 
 3. Issue the command `./config`.
 
@@ -113,5 +113,5 @@ To run the device against the SCT for the DI protocol, do the following:
     Your output should be as follows:
 
     ```
-	OpenSSL 1.1.1n  15 Mar 2022
+	OpenSSL 1.1.1q  05 Jul 2022
     ```
