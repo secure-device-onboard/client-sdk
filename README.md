@@ -1,7 +1,6 @@
 # Secure Device Onboard (SDO) Client SDK
 
-***Note:***  The support for this product has been discontinued from March 31, 2023. We recommend users to switch to FDO components (https://github.com/secure-device-onboard/client-sdk-fidoiot). 
-FIDO Device Onboard (FDO) is functionally compatible with Secure Device Onboard (SDO).
+***Note:***  The support for this product has been discontinued from March 31, 2023. FIDO Device Onboard (FDO) is functionally compatible with Secure Device Onboard (SDO). We recommend users to switch to FDO components (https://github.com/secure-device-onboard/client-sdk-fidoiot).
 
 [ Introduction ](docs/introduction.md) <br>
 [  SDO Compilation Setup ](docs/setup.md)
